@@ -1,0 +1,28 @@
+3. var breaks = bind "/controls/flight/speedbrake"
+4. var throttle = bind "/controls/engines/current-engine/throttle"
+5. var heading = bind "/instrumentation/heading-indicator/indicated-heading-deg"
+6. var airspeed = bind "/instrumentation/airspeed-indicator/indicated-speed-kt"
+7. var roll = bind "/instrumentation/attitude-indicator/indicated-roll-deg"
+8. var pitch = bind "/instrumentation/attitude-indicator/internal-pitch-deg"
+9. var rudder = bind "/controls/flight/rudder"
+10. var aileron = bind "/controls/flight/aileron"
+11. var elevator = bind "/controls/flight/elevator"
+12. var alt = bind "/instrumentation/altimeter/indicated-altitude-ft"
+13. breaks = 0
+14. throttle = 1
+15. var h0 = heading
+16. while airspeed < 70 {
+21. sleep 50
+17. rudder = (h0 - heading)/20
+18. aileron = - roll / 70
+19. elevator = pitch / 50
+20. print airspeed
+22. }
+16. while alt < 200 {
+17. rudder = (h0 - heading)/100
+18. aileron = - roll / 70
+19. elevator = pitch / 50
+20. print alt
+21. sleep 50
+22. }
+23. print "done"

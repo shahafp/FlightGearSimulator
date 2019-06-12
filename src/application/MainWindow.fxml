@@ -1,0 +1,155 @@
+<!--  <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import application.ColorfulMapDisplayer?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainWindowController">
+   <center>
+      <Pane prefHeight="513.0" prefWidth="1328.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#connect" prefHeight="47.0" prefWidth="143.0" text="Connect">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="320.0" layoutY="44.0" mnemonicParsing="false" onAction="#calculatePath" prefHeight="47.0" prefWidth="143.0" text="Calculate path">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="167.0" layoutY="44.0" mnemonicParsing="false" onAction="#loadData" prefHeight="47.0" prefWidth="143.0" text="Load data">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <RadioButton fx:id="autopilot" layoutX="625.0" layoutY="51.0" mnemonicParsing="false" onAction="#autopilotClicked" text="Autopilot">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="manual" layoutX="1068.0" layoutY="51.0" mnemonicParsing="false" onAction="#manualClicked" text="Manual">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </RadioButton>
+            <TextArea fx:id="scriptTextArea" layoutX="502.0" layoutY="113.0" prefHeight="318.0" prefWidth="390.0" />
+          <Circle fx:id="circleFrame" fill="#dadada" layoutX="1130.0" layoutY="272.0" radius="147.0" stroke="BLACK" /> 
+          <Circle fx:id="circleJoyStick" fill="DODGERBLUE" layoutX="1130.0" layoutY="272.0" opacity="0.52" radius="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0">
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularConstant="1.83" specularExponent="34.64" surfaceScale="7.44">
+                     <light>
+                        <Light.Distant azimuth="49.39" />
+                     </light>
+                     <bumpInput>
+                        <Shadow height="42.77" radius="17.775" width="30.33" />
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+            </Circle>   
+            <Slider fx:id="rudderSlider" layoutX="991.0" layoutY="420.0" max="1.0" min="-1.0" prefHeight="35.0" prefWidth="277.0" rotate="180.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></Slider>
+            <Slider fx:id="throttleSlider" layoutX="810.0" layoutY="253.0" max="1.0" prefHeight="38.0" prefWidth="296.0" rotate="-90.0">
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></Slider>
+            <Text layoutX="1060.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aileron" textAlignment="CENTER" wrappingWidth="139.6708984375">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text layoutX="869.0" layoutY="280.0" rotate="-90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Throttle" textAlignment="CENTER" wrappingWidth="139.6708984375">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Text>
+            <Text layoutX="1060.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rudder" textAlignment="CENTER" wrappingWidth="139.6708984375">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1166.0" layoutY="94.0">
+               <image>
+                  <Image url="@../../resources/arrow6.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1053.0" layoutY="93.0" rotate="180.0">
+               <image>
+                  <Image url="@../../resources/arrow6.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1275.0" layoutY="188.0" rotate="-90.0">
+               <image>
+                  <Image url="@../../resources/arrow6.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="1274.0" layoutY="318.0" rotate="90.0">
+               <image>
+                  <Image url="@../../resources/arrow6.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="loadScript" layoutX="534.0" layoutY="437.0" mnemonicParsing="false" onAction="#loadScript" prefHeight="47.0" prefWidth="143.0" text="Load script">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Text layoutX="1224.0" layoutY="280.0" rotate="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="elevator" textAlignment="CENTER" wrappingWidth="139.6708984375">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Text>
+            <Text fill="#ff5e5e" layoutX="71.0" layoutY="331.0" stroke="#5e4c4c" strokeType="OUTSIDE" strokeWidth="0.0" text="Please load map data" textAlignment="JUSTIFY" wrappingWidth="334.6708984375">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+               <effect>
+                  <Lighting>
+                     <light>
+                        <Light.Distant color="#ff8787" />
+                     </light>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                  </Lighting>
+               </effect>
+            </Text>
+            <Button fx:id="run" layoutX="721.0" layoutY="437.0" mnemonicParsing="false" onAction="#run" prefHeight="47.0" prefWidth="143.0" text="Run">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="238.0" fitWidth="289.0" layoutX="94.0" layoutY="140.0">
+               <image>
+                  <Image url="@../../resources/airplaneBlue.png" />
+               </image>
+            </ImageView>
+       <ColorfulMapDisplayer fx:id="colorfulMapDisplayer" height="318.0" layoutX="23.0" layoutY="113.0" width="464.0" />  
+         </children>
+      </Pane>
+   </center>
+</BorderPane> -->
